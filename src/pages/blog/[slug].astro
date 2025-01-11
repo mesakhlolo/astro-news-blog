@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 import Erika from "../../assets/erika.jpg";
 
 export const getStaticPaths = async () => {
@@ -21,9 +20,9 @@ const render = await props.post.render();
 
 <MainLayout title="Blog Post">
   <h1>{props.post.data.title}</h1>
-  <Image src={Erika} alt="Erika {Author Image}" />
+  <img inferSize src={Erika.src} alt="Erika {Author Image}" />
   <div>
-    <Image inferSize src={props.post.data.image} alt={props.post.data.image} />
+    <img inferSize src={props.post.data.image} alt={props.post.data.image} />
     <render.Content />
   </div>
 </MainLayout>
