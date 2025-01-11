@@ -1,9 +1,39 @@
 ---
+// @ts-nocheck
+
+import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+
+// getCollection
+const blogPosts = await getCollection("blog");
 ---
 
-<MainLayout>
-  <h1>Hello Astro!</h1>
+<MainLayout title="Homepage">
+  <h1>Homepage</h1>
+
+  <h2>Slider Posts</h2>
+  <ul>
+    {
+      blogPosts
+        .filter((post) => post.data.isPinned)
+        .map((post) => (
+          <li>
+            <a href={`blog/${post.slug}`}>{post.data.title}</a>
+          </li>
+        ))
+    }
+  </ul>
+
+  <h2>Articles</h2>
+  <ul>
+    {
+      blogPosts.map((post) => (
+        <li>
+          <a href={`blog/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </MainLayout>
