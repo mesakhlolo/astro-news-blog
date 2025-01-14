@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
 import Card from "../components/Card.astro";
 import { SEO } from "astro-seo";
+import Swaper from "../components/Slider.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 
@@ -33,18 +34,9 @@ const blogPosts = await getCollection("blog");
     }}
   />
 
-  <!-- <h2>Slider Posts</h2>
-  <ul>
-    {
-      blogPosts
-        .filter((post) => post.data.isPinned)
-        .map((post) => (
-          <li>
-            <a href={`blog/${post.slug}`}>{post.data.title}</a>
-          </li>
-        ))
-    }
-  </ul> -->
+  <div style="margin-top: 0.5rem;">
+    <Swaper posts={blogPosts.filter((post) => post.data.isPinned)} />
+  </div>
 
   <!-- Articles -->
   <main class="container mt-content">
