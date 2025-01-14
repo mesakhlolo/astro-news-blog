@@ -1,3 +1,27 @@
 main.mt-content {
   margin-top: 100px;
 }
+
+/* share component */
+.social-share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+}
+
+.social-share p {
+  margin: 0;
+  margin-right: 1rem;
+}
+
+.social-share .astro-social-share {
+  display: flex;
+  justify-content: center;
+}
+
+.social-share .astro-social-share a {
+  display: block;
+  width: 20px;
+  margin: 0 0.5rem;
+}

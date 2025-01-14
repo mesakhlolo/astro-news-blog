@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Erika from "../../assets/erika.jpg";
 import { getFormattedDate } from "../../utils/global";
 import { SEO } from "astro-seo";
+import Share from "../../components/Share.astro";
 
 export const getStaticPaths = async () => {
   const blogPosts = await getCollection("blog");
@@ -67,6 +68,9 @@ const { Content, remarkPluginFrontmatter } = await post.render();
       </div>
     </div>
 
+    <!-- Social button share -->
+    <Share />
+
     <!-- blog image -->
     <div class="picture">
       <img inferSize src={post.data.image} alt={post.data.image} />
@@ -75,6 +79,9 @@ const { Content, remarkPluginFrontmatter } = await post.render();
     <div class="content">
       <Content />
     </div>
+
+    <!-- Social button share -->
+    <Share />
   </main>
 </MainLayout>
 
