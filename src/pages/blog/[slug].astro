@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 import Erika from "../../assets/erika.jpg";
 import { getFormattedDate } from "../../utils/global";
+import { SEO } from "astro-seo";
 
 export const getStaticPaths = async () => {
   const blogPosts = await getCollection("blog");
@@ -15,11 +16,29 @@ export const getStaticPaths = async () => {
 
 const { post } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await post.render();
-
-console.log(remarkPluginFrontmatter);
 ---
 
 <MainLayout title={post.data.title}>
+  <SEO
+    slot="seo"
+    title={post.data.title}
+    description={post.data.excerpt}
+    twitter={{
+      creator: "@jotarokujo",
+      card: "summary_large_image",
+    }}
+    openGraph={{
+      basic: {
+        type: "website",
+        title: post.data.title,
+        image: post.data.image,
+      },
+      image: {
+        alt: "Thumbnail",
+      },
+    }}
+  />
+
   <main class="mt-content">
     <div class="content-header">
       <!-- title -->
