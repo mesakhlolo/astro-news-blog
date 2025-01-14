@@ -82,8 +82,31 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 
     <!-- Social button share -->
     <Share />
+
+    <!-- Disqus comment section -->
+    <div id="disqus_thread"></div>
   </main>
 </MainLayout>
+
+<!-- Disqus.com javascript -->
+<script
+  is:inline
+  define:vars={{ PAGE_URL: Astro.url.href, PAGE_IDENTIFIER: post.slug }}
+>
+  var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://astro-news-portal-2.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
 
 <!-- Local Styling -->
 <style>
